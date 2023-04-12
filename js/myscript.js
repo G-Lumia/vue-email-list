@@ -3,8 +3,7 @@ createApp
 ({
     data(){
         return{
-            mail : '',
-            mailNum : 0
+            mails: []
         }
     },
     methods: {
@@ -12,31 +11,30 @@ createApp
            
         },
         createMails(){
-            if(this.mailNum < 10)
+            const newMails = [];
+            if(this.mails.length < 10)
             {
                 for(let i = 0; i < 10 ; i++)
                 {
                     axios.get(`https://flynn.boolean.careers/exercises/api/random/mail`).then((mail) => {
-                        let newMail = document.createElement("li");
-                        let mailContent = document.createElement("p");
-                        mailContent.innerText = mail.data.response;
-                        newMail.appendChild(mailContent);
-                        let list = document.getElementById("mail-list");
-                        list.appendChild(newMail);
-                        this.mailNum++;           
+                        this.mails.push(mail.data.response);     
                     })
                 }
+                
             }
             else
             {
-                while (document.getElementById("mail-list").firstChild) {
-                    document.getElementById("mail-list").removeChild(document.getElementById("mail-list").firstChild);
-                  }
-                  this.mailNum = 0;
+                this.mails = [];
+                for(let i = 0; i < 10 ; i++)
+                {
+                    axios.get(`https://flynn.boolean.careers/exercises/api/random/mail`).then((mail) => {
+                        this.mails.push(mail.data.response);     
+                    })
+                }
             }
         }
     },
     mounted(){
-
+        this.createMails()
     }
 }).mount("#app");

@@ -11,12 +11,16 @@
 
   <body>
     <div id="app">
-        <div class="container">
+        <div class="container py-5 w-50 d-flex justify-content-center align-itemes-center">
+          <div class="d-flex flex-column justify-content-center ">
             <h1> Crea 10 email diverse </h1>
-            <button @click = "createMails"> Clicca </button>
-            <ul id="mail-list">
-
+            <button  class="btn btn-light" @click = "createMails"> Clicca </button>
+            <ul id="mail-list" class="d-flex flex-column align-items-center gap-2 py-5">
+              <li v-for="(element, index) in mails" :key="index">
+                {{mails[index]}}
+              </li>
             </ul>
+          </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
