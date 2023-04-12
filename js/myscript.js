@@ -35,6 +35,5 @@ createApp
         }
     },
     mounted(){
-        this.createMails()
     }
 }).mount("#app");

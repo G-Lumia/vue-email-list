@@ -15,7 +15,7 @@
           <div class="d-flex flex-column justify-content-center ">
             <h1> Crea 10 email diverse </h1>
             <button  class="btn btn-light" @click = "createMails"> Clicca </button>
-            <ul id="mail-list" class="d-flex flex-column align-items-center gap-2 py-5">
+            <ul v-if="mails.length === 10" id="mail-list" class="d-flex flex-column align-items-center gap-2 py-5">
               <li v-for="(element, index) in mails" :key="index">
                 {{mails[index]}}
               </li>
